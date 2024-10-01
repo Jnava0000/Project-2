@@ -1,0 +1,18 @@
+#include <iostream>
+#include <stdexcept>
+
+void changeGrade(const std::string& student, int newGrade) {
+    try {
+        if (student.empty()) {
+            throw std::invalid_argument("Student name cannot be empty.");
+        }
+        if (newGrade < 0 || newGrade > 100) {
+            throw std::out_of_range("Grade must be between 0 and 100.");
+        }
+        std::cout << "Changing grade for " << student << " to " << newGrade << std::endl;
+        // Simulate grade changing process
+        // Add actual grade changing logic here
+    } catch (const std::exception& e) {
+        std::cerr << "Error changing grade: " << e.what() << std::endl;
+    }
+}
