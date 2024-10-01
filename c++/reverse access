@@ -1,0 +1,12 @@
+#include <iostream>
+#include <stdexcept>
+
+void reverseAccess() {
+    try {
+        std::cout << "Reversing access..." << std::endl;
+        // Simulate reverse access process
+        // Add actual reverse access logic here
+    } catch (const std::exception& e) {
+        std::cerr << "Error reversing access: " << e.what() << std::endl;
+    }
+}
