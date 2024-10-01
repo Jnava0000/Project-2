@@ -1,0 +1,103 @@
+import os
+import shutil
+import sys
+import json
+import logging
+
+# Define keywords to identify extensions that may monitor or manage the device
+MONITORING_KEYWORDS = [
+    "management", "system", "background", "tabs", "storage", "history", 
+    "privacy", "webRequest", "cookies", "debugger", "alarms"
+]
+
+def get_chrome_extension_paths():
+    # Determine platform-specific paths for Chrome extensions
+    if sys.platform == "win32":
+        chrome_user_data_path = os.path.expanduser("~") + "\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions"
+        disabled_extensions_path = os.path.expanduser("~") + "\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions_Disabled"
+    else:
+        chrome_user_data_path = os.path.expanduser("~") + "/.config/google-chrome/Default/Extensions"
+        disabled_extensions_path = os.path.expanduser("~") + "/.config/google-chrome/Default/Extensions_Disabled"
+    
+    return chrome_user_data_path, disabled_extensions_path
+
+def is_monitoring_extension(manifest_path):
+    """
+    Check if the extension's manifest contains suspicious permissions or behaviors.
+    """
+    try:
+        with open(manifest_path, "r", encoding="utf-8") as manifest_file:
+            manifest_data = json.load(manifest_file)
+            permissions = manifest_data.get("permissions", [])
+            
+            # Check if any of the defined keywords are present in permissions
+            if any(keyword in permissions for keyword in MONITORING_KEYWORDS):
+                return True
+
+            # Check optional permissions, as some extensions request additional privileges dynamically
+            optional_permissions = manifest_data.get("optional_permissions", [])
+            if any(keyword in optional_permissions for keyword in MONITORING_KEYWORDS):
+                return True
+
+            # Check background service or external scripts which may indicate monitoring
+            if manifest_data.get("background", {}).get("scripts", []):
+                return True
+            
+            return False
+    except (json.JSONDecodeError, FileNotFoundError):
+        # If manifest file can't be read or parsed, assume it's not monitoring
+        logging.warning(f"Could not parse manifest at: {manifest_path}")
+        return False
+
+def disable_chrome_extensions():
+    chrome_user_data_path, disabled_extensions_path = get_chrome_extension_paths()
+
+    # Create log file to track activity
+    logging.basicConfig(filename="chrome_extension_disable.log", level=logging.INFO, 
+                        format="%(asctime)s - %(levelname)s - %(message)s")
+    
+    if not os.path.exists(chrome_user_data_path):
+        logging.error(f"Chrome extensions directory does not exist: {chrome_user_data_path}")
+        print(f"Error: Chrome extensions directory does not exist: {chrome_user_data_path}")
+        return
+
+    if not os.path.exists(disabled_extensions_path):
+        os.makedirs(disabled_extensions_path)
+        logging.info(f"Created directory for disabled extensions: {disabled_extensions_path}")
+
+    extensions = os.listdir(chrome_user_data_path)
+    if not extensions:
+        print("No extensions found to disable.")
+        return
+
+    for extension in extensions:
+        extension_path = os.path.join(chrome_user_data_path, extension)
+        manifest_path = os.path.join(extension_path, "manifest.json")
+        
+        # Check if the extension has monitoring or device management permissions
+        if os.path.isdir(extension_path) and os.path.exists(manifest_path):
+            if is_monitoring_extension(manifest_path):
+                try:
+                    # Move the suspicious extension folder to the disabled path
+                    shutil.move(extension_path, os.path.join(disabled_extensions_path, extension))
+                    logging.info(f"Moved suspicious extension: {extension}")
+                    print(f"Disabled suspicious extension: {extension}")
+                except Exception as e:
+                    logging.error(f"Failed to move extension {extension}: {str(e)}")
+                    print(f"Failed to disable extension {extension}: {str(e)}")
+            else:
+                logging.info(f"Extension {extension} does not match monitoring criteria.")
+        else:
+            logging.warning(f"Skipped non-directory or missing manifest: {extension_path}")
+
+    print("All suspicious extensions have been successfully disabled.")
+
+if __name__ == "__main__":
+    # Prompt user to close Chrome before disabling extensions
+    print("Warning: Please ensure that Google Chrome is closed before running this script.")
+    user_response = input("Do you want to continue? (y/n): ").lower()
+    
+    if user_response == 'y':
+        disable_chrome_extensions()
+    else:
+        print("Operation cancelled by the user.")
