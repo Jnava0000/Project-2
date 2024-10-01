@@ -29,6 +29,9 @@ We are currently developing a sophisticated client designed to offer a wide rang
         Dark Web Accessibility: Facilitating easy access to the dark web for legitimate research and security testing purposes.
 
 Additional features may be added as the project evolves. An easy hide option is also being developed to enhance discretion.
+INSTRUCTIONS:
+*Click on ¨Code¨ on the homepage and then click ¨code space¨
+*and then run what ever one u want c:
 
 Important Note:
 This client is currently under active development, and we do not have a definitive timeline for completion at this time. We appreciate your patience and understanding as we work diligently to ensure a high-quality and reliable end product.
