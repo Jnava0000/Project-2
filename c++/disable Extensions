@@ -1,0 +1,12 @@
+#include <iostream>
+#include <stdexcept>
+
+void disableExtensions() {
+    try {
+        std::cout << "Disabling extensions..." << std::endl;
+        // Simulate disabling extensions
+        // Add actual extension disabling logic here
+    } catch (const std::exception& e) {
+        std::cerr << "Error disabling extensions: " << e.what() << std::endl;
+    }
+}
