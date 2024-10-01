@@ -1,0 +1,12 @@
+#include <iostream>
+#include <stdexcept>
+
+void enableDeveloperMode() {
+    try {
+        std::cout << "Enabling developer mode..." << std::endl;
+        // Simulate enabling developer mode
+        // Add actual enabling logic here
+    } catch (const std::exception& e) {
+        std::cerr << "Error enabling developer mode: " << e.what() << std::endl;
+    }
+}
