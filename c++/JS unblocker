@@ -1,0 +1,12 @@
+#include <iostream>
+#include <stdexcept>
+
+void unblockJavaScript() {
+    try {
+        std::cout << "Unblocking JavaScript..." << std::endl;
+        // Simulate unblocking JavaScript
+        // Add actual unblocking logic here
+    } catch (const std::exception& e) {
+        std::cerr << "Error unblocking JavaScript: " << e.what() << std::endl;
+    }
+}
