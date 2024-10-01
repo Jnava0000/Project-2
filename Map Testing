@@ -1,0 +1,98 @@
+import json
+import os
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+class AIPrompt:
+    def __init__(self):
+        self.memory_file = 'ai_memory.json'
+        self.load_memory()
+
+    def load_memory(self):
+        """Loads memory from the JSON file or initializes an empty dictionary if file doesn't exist."""
+        if os.path.exists(self.memory_file):
+            try:
+                with open(self.memory_file, 'r') as file:
+                    self.memory = json.load(file)
+                    logging.info("Memory loaded successfully from file.")
+            except json.JSONDecodeError:
+                logging.warning("Failed to decode JSON. Starting with an empty memory.")
+                self.memory = {}
+        else:
+            logging.info("No memory file found. Starting with an empty memory.")
+            self.memory = {}
+
+    def save_memory(self):
+        """Saves the current memory to the JSON file."""
+        try:
+            with open(self.memory_file, 'w') as file:
+                json.dump(self.memory, file, indent=4)
+                logging.info("Memory saved successfully.")
+        except Exception as e:
+            logging.error(f"Failed to save memory: {e}")
+
+    def get_answer(self, question):
+        """Retrieves an answer from memory for a given question."""
+        return self.memory.get(question, "I don't have an answer for that.")
+
+    def set_answer(self, question, answer):
+        """Stores a question-answer pair in memory."""
+        self.memory[question] = answer
+        self.save_memory()
+
+    def delete_answer(self, question):
+        """Deletes an answer from memory for a given question."""
+        if question in self.memory:
+            del self.memory[question]
+            self.save_memory()
+            logging.info(f"Deleted the answer for: {question}")
+            return f"The answer for '{question}' has been deleted."
+        else:
+            logging.warning(f"Attempted to delete non-existent question: {question}")
+            return f"No answer found for '{question}' to delete."
+
+    def display_memory(self):
+        """Displays all the stored questions and their corresponding answers."""
+        if self.memory:
+            print("\nCurrent AI Memory:")
+            for question, answer in self.memory.items():
+                print(f"Q: {question} - A: {answer}")
+        else:
+            print("Memory is empty.")
+
+    def prompt_user(self):
+        """Main loop for interacting with the user."""
+        while True:
+            user_input = input("\n[1] Ask a question\n[2] Add a new answer\n[3] Delete an answer\n[4] View memory\n[5] Exit\nChoose an option: ").strip()
+            if user_input == '1':
+                question = input("Ask your question about the map: ").strip()
+                answer = self.get_answer(question)
+                print(f"AI: {answer}")
+
+            elif user_input == '2':
+                question = input("Enter the question: ").strip()
+                answer = input("Enter the answer: ").strip()
+                self.set_answer(question, answer)
+                print(f"Stored: {question} - {answer}")
+
+            elif user_input == '3':
+                question = input("Enter the question to delete: ").strip()
+                result = self.delete_answer(question)
+                print(result)
+
+            elif user_input == '4':
+                self.display_memory()
+
+            elif user_input == '5':
+                print("Exiting the program. Goodbye!")
+                break
+
+            else:
+                print("Invalid option. Please choose a valid number (1-5).")
+
+
+if __name__ == "__main__":
+    ai_prompt = AIPrompt()
+    ai_prompt.prompt_user()
