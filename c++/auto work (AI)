@@ -1,0 +1,12 @@
+#include <iostream>
+#include <stdexcept>
+
+void autoWork() {
+    try {
+        std::cout << "Starting auto work with ChatGPT 4..." << std::endl;
+        // Simulate auto work process
+        // Add actual auto work logic here
+    } catch (const std::exception& e) {
+        std::cerr << "Error during auto work: " << e.what() << std::endl;
+    }
+}
