@@ -1,0 +1,12 @@
+#include <iostream>
+#include <stdexcept>
+
+void accessUnmonitoredSocialMedia() {
+    try {
+        std::cout << "Accessing unmonitored social media..." << std::endl;
+        // Simulate accessing unmonitored social media
+        // Add actual access logic here
+    } catch (const std::exception& e) {
+        std::cerr << "Error accessing unmonitored social media: " << e.what() << std::endl;
+    }
+}
