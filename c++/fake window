@@ -1,0 +1,12 @@
+#include <iostream>
+#include <stdexcept>
+
+void enablePrivateBrowsing() {
+    try {
+        std::cout << "Enabling private browsing..." << std::endl;
+        // Simulate enabling private browsing
+        // Add actual private browsing logic here
+    } catch (const std::exception& e) {
+        std::cerr << "Error enabling private browsing: " << e.what() << std::endl;
+    }
+}
