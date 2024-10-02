@@ -1,0 +1,56 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const classList = document.getElementById('class-list').querySelector('ul');
+    const assignmentList = document.getElementById('assignment-list');
+    const gradesTable = document.getElementById('grades-table');
+    const classAverageDisplay = document.getElementById('class-average');
+
+    // Add new class to the class list
+    document.getElementById('add-class-btn').addEventListener('click', () => {
+        const className = document.getElementById('class-name').value;
+        if (className) {
+            const newClass = document.createElement('li');
+            newClass.textContent = className;
+            classList.appendChild(newClass);
+            document.getElementById('class-name').value = ''; // Clear input field
+        }
+    });
+
+    // Add new assignment to the assignment list
+    document.getElementById('add-assignment-btn').addEventListener('click', () => {
+        const assignmentName = document.getElementById('assignment-name').value;
+        if (assignmentName) {
+            const newAssignment = document.createElement('li');
+            newAssignment.textContent = assignmentName;
+            assignmentList.appendChild(newAssignment);
+            document.getElementById('assignment-name').value = ''; // Clear input field
+        }
+    });
+
+    // Add a new grade for a student
+    document.getElementById('add-grade-btn').addEventListener('click', () => {
+        const studentName = document.getElementById('student-name').value;
+        const grade = parseFloat(document.getElementById('grade-input').value);
+        if (studentName && !isNaN(grade)) {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `<td>${studentName}</td><td>${grade}</td>`;
+            gradesTable.appendChild(newRow);
+            document.getElementById('student-name').value = ''; // Clear input fields
+            document.getElementById('grade-input').value = '';
+
+            // Update class average
+            updateClassAverage();
+        }
+    });
+
+    // Calculate and display class average
+    function updateClassAverage() {
+        const gradeRows = gradesTable.querySelectorAll('tr');
+        let total = 0;
+        gradeRows.forEach(row => {
+            const grade = parseFloat(row.children[1].textContent);
+            total += grade;
+        });
+        const average = total / gradeRows.length;
+        classAverageDisplay.textContent = gradeRows.length > 0 ? average.toFixed(2) : '0';
+    }
+});
