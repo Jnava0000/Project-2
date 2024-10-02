@@ -1,56 +1,41 @@
-import requests
+# Hide IP and Search History for Chrome OS
+
 import os
-import json
-from cryptography.fernet import Fernet
+import subprocess
 
-# Function to generate a key for encryption
-def generate_key():
-    return Fernet.generate_key()
+def hide_ip(vpn_command):
+    """
+    Connects to a VPN to hide the IP address.
 
-# Function to encrypt data
-def encrypt_data(data, key):
-    fernet = Fernet(key)
-    encrypted = fernet.encrypt(data.encode())
-    return encrypted
-
-# Function to save encrypted data to a file
-def save_encrypted_data(file_name, data):
-    with open(file_name, 'wb') as file:
-        file.write(data)
-
-# Function to hide search history
-def hide_search_history(search_history):
-    key = generate_key()
-    encrypted_history = encrypt_data(search_history, key)
-    save_encrypted_data('search_history.enc', encrypted_history)
-    return key
-
-# Function to get a new IP address using a proxy
-def get_new_ip(proxy):
+    Args:
+        vpn_command (list): Command to connect to the VPN.
+    """
     try:
-        response = requests.get('http://api.ipify.org', proxies=proxy, timeout=5)
-        response.raise_for_status()  # Raise an error for bad responses
-        return response.text
-    except requests.RequestException as e:
-        print(f"Error getting new IP: {e}")
-        return None
+        subprocess.run(vpn_command, check=True)
+        print("Successfully connected to VPN.")
+    except subprocess.CalledProcessError:
+        print("Failed to connect to VPN. Please check the command and your VPN settings.")
 
-# Example usage
+def clear_search_history():
+    """
+    Clears Chrome's browsing data by removing the History file.
+    """
+    chrome_data_path = os.path.expanduser("~/.config/google-chrome/Default")
+    history_file = os.path.join(chrome_data_path, "History")
+    
+    if os.path.exists(history_file):
+        try:
+            os.remove(history_file)
+            print("Search history cleared successfully.")
+        except Exception as e:
+            print(f"Failed to clear search history: {e}")
+    else:
+        print("No search history file found.")
+
 if __name__ == "__main__":
-    search_history = "example search history"
+    # Replace with the actual VPN command
+    vpn_command = ["vpn_command", "connect"]
     
-    # Hide the search history and save it
-    key = hide_search_history(search_history)
-    
-    # Proxy settings
-    proxy = {
-        'http': 'http://your_proxy_here',
-        'https': 'http://your_proxy_here',
-    }
-    
-    # Get a new IP address using the proxy
-    new_ip = get_new_ip(proxy)
-    
-    if new_ip:
-        print(f"New IP Address: {new_ip}")
-    print(f"Encryption Key: {key.decode()}")
+    hide_ip(vpn_command)
+    clear_search_history()
+
