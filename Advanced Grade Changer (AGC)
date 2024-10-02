@@ -1,0 +1,78 @@
+import getpass
+
+# Mock database of usernames and passwords
+USER_DATABASE = {
+    'user1': 'password123',
+    'admin': 'adminpass'
+}
+
+def login():
+    """
+    Prompt the user for login credentials and validate them against the USER_DATABASE.
+
+    Returns:
+    bool: True if login is successful, False otherwise.
+    """
+    print("Please login to continue.")
+    username = input("Username: ")
+    password = getpass.getpass("Password: ")
+
+    if USER_DATABASE.get(username) == password:
+        print(f"Welcome, {username}!")
+        return True
+    else:
+        print("Invalid username or password. Please try again.")
+        return False
+
+def update_grades(grades):
+    """
+    Update a list of grades, changing all grades to 'B' unless they are already 'A'.
+    
+    Parameters:
+    grades (list): A list of grades represented as strings.
+    
+    Returns:
+    list: A list of updated grades.
+    """
+    updated_grades = []
+
+    try:
+        for grade in grades:
+            if grade == 'A':
+                updated_grades.append(grade)
+            elif grade in ['B', 'C', 'D', 'F']:
+                updated_grades.append('B')
+            else:
+                print(f"Skipping invalid grade: {grade}")
+        
+        return updated_grades
+
+    except TypeError as e:
+        print(f"TypeError: {e}. Please provide a list of grades.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+def main():
+    # Prompt the user for login
+    if login():
+        # If login is successful, ask for the grades to update
+        print("Login successful. Please enter your grades to update.")
+        
+        # Taking input of grades as comma-separated values
+        grades_input = input("Enter your grades (e.g., A, B, C, D, F): ")
+        
+        # Convert the input string to a list
+        grades = [grade.strip().upper() for grade in grades_input.split(',')]
+        
+        # Call the update_grades function
+        updated_grades = update_grades(grades)
+        
+        if updated_grades:
+            print("Updated Grades:", updated_grades)
+        else:
+            print("No valid grades to update.")
+    else:
+        print("Login failed. Exiting program.")
+
+if __name__ == "__main__":
+    main()
