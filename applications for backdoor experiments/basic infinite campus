@@ -1,0 +1,178 @@
+// Define a class to represent a Student in the school system
+class Student {
+    constructor(name, id, year) {
+        this.name = name;
+        this.id = id;
+        this.year = year;  // E.g., Freshman, Sophomore, Junior, Senior
+        this.grades = {};  // Object to store grades for multiple courses
+        this.enrolledCourses = [];  // List of enrolled courses
+    }
+
+    // Method to add a grade for a specific course
+    addGrade(course, grade) {
+        if (!this.grades[course.code]) {
+            this.grades[course.code] = [];
+        }
+        this.grades[course.code].push(grade);
+    }
+
+    // Method to enroll the student in a course
+    enrollCourse(course) {
+        if (!this.enrolledCourses.includes(course.code)) {
+            this.enrolledCourses.push(course.code);
+            course.enrollStudent(this);  // Automatically add student to course's list
+        }
+    }
+
+    // Method to calculate the GPA based on all grades
+    getGPA() {
+        let totalGrades = 0;
+        let numberOfGrades = 0;
+        for (let courseCode in this.grades) {
+            const courseGrades = this.grades[courseCode];
+            totalGrades += courseGrades.reduce((acc, grade) => acc + grade, 0);
+            numberOfGrades += courseGrades.length;
+        }
+        return numberOfGrades === 0 ? 0 : (totalGrades / numberOfGrades).toFixed(2);
+    }
+
+    // Method to display student's enrolled courses
+    listCourses() {
+        return this.enrolledCourses.join(", ");
+    }
+}
+
+// Define a class to represent a Course
+class Course {
+    constructor(title, code, schedule) {
+        this.title = title;
+        this.code = code;
+        this.schedule = schedule;  // E.g., "MWF 9:00AM - 10:00AM"
+        this.enrolledStudents = [];  // List of students enrolled in the course
+    }
+
+    // Method to enroll a student in the course
+    enrollStudent(student) {
+        if (!this.enrolledStudents.includes(student.id)) {
+            this.enrolledStudents.push(student.id);
+        }
+    }
+
+    // Method to display enrolled students in the course
+    listEnrolledStudents() {
+        return this.enrolledStudents.join(", ");
+    }
+}
+
+// Define a class to represent a Teacher
+class Teacher {
+    constructor(name, employeeId, department) {
+        this.name = name;
+        this.employeeId = employeeId;
+        this.department = department;
+        this.coursesTaught = [];  // List of courses the teacher is teaching
+    }
+
+    // Method to assign a course to the teacher
+    assignCourse(course) {
+        this.coursesTaught.push(course.code);
+    }
+
+    // Method to list all courses taught by the teacher
+    listCourses() {
+        return this.coursesTaught.join(", ");
+    }
+}
+
+// Define a class to represent a School
+class School {
+    constructor(name, address) {
+        this.name = name;
+        this.address = address;
+        this.students = {};  // Dictionary of students by ID
+        this.teachers = {};  // Dictionary of teachers by ID
+        this.courses = {};  // Dictionary of courses by code
+    }
+
+    // Method to register a student
+    registerStudent(student) {
+        this.students[student.id] = student;
+    }
+
+    // Method to hire a teacher
+    hireTeacher(teacher) {
+        this.teachers[teacher.employeeId] = teacher;
+    }
+
+    // Method to create a course
+    createCourse(course) {
+        this.courses[course.code] = course;
+    }
+
+    // Method to get details of a student
+    getStudentDetails(studentId) {
+        const student = this.students[studentId];
+        if (student) {
+            console.log(`Student Name: ${student.name}`);
+            console.log(`Year: ${student.year}`);
+            console.log(`Enrolled Courses: ${student.listCourses()}`);
+            console.log(`GPA: ${student.getGPA()}`);
+        } else {
+            console.log('Student not found');
+        }
+    }
+
+    // Method to get details of a teacher
+    getTeacherDetails(teacherId) {
+        const teacher = this.teachers[teacherId];
+        if (teacher) {
+            console.log(`Teacher Name: ${teacher.name}`);
+            console.log(`Department: ${teacher.department}`);
+            console.log(`Courses Taught: ${teacher.listCourses()}`);
+        } else {
+            console.log('Teacher not found');
+        }
+    }
+}
+
+// Example usage of the classes:
+
+// Create a new school
+const school = new School('Green Valley High', '1234 Elm St.');
+
+// Register students
+const student1 = new Student('John Doe', '12345', 'Sophomore');
+const student2 = new Student('Jane Smith', '67890', 'Freshman');
+school.registerStudent(student1);
+school.registerStudent(student2);
+
+// Hire teachers
+const teacher1 = new Teacher('Mr. Anderson', 'T001', 'Mathematics');
+const teacher2 = new Teacher('Ms. Johnson', 'T002', 'Science');
+school.hireTeacher(teacher1);
+school.hireTeacher(teacher2);
+
+// Create courses
+const mathCourse = new Course('Mathematics', 'MATH101', 'MWF 9:00AM - 10:00AM');
+const scienceCourse = new Course('Biology', 'BIO101', 'TTH 1:00PM - 2:30PM');
+school.createCourse(mathCourse);
+school.createCourse(scienceCourse);
+
+// Assign courses to teachers
+teacher1.assignCourse(mathCourse);
+teacher2.assignCourse(scienceCourse);
+
+// Enroll students in courses
+student1.enrollCourse(mathCourse);
+student1.addGrade(mathCourse, 90);
+student1.addGrade(mathCourse, 85);
+
+student2.enrollCourse(scienceCourse);
+student2.addGrade(scienceCourse, 95);
+student2.addGrade(scienceCourse, 88);
+
+// Get details of a student
+school.getStudentDetails('12345');  // Displays details for John Doe
+
+// Get details of a teacher
+school.getTeacherDetails('T001');  // Displays details for Mr. Anderson
