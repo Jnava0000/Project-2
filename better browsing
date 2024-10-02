@@ -1,0 +1,108 @@
+from flask import Flask, request, render_template_string, Markup
+import requests
+from urllib.parse import urlparse
+
+app = Flask(__name__)
+
+# Improved HTML template with CSS for styling and better UX
+HTML_TEMPLATE = """
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unblocked Search Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow-wrap: break-word;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Unblocked Search Engine</h1>
+    <form method="POST">
+        <input type="text" name="url" placeholder="Enter URL" required>
+        <button type="submit">Access</button>
+    </form>
+    <div>
+        {% if content %}
+            <h2>Website Content:</h2>
+            <div class="content">{{ content|safe }}</div>
+        {% elif error %}
+            <h2 class="error">Error:</h2>
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+"""
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    content = None
+    error = None
+
+    if request.method == 'POST':
+        url = request.form['url']
+
+        # Validate the URL structure
+        if not urlparse(url).scheme:
+            url = 'http://' + url  # Add scheme if missing for basic validation
+
+        try:
+            # Attempt to fetch the content of the provided URL
+            response = requests.get(url, timeout=10)  # Set a timeout for the request
+            response.raise_for_status()  # Raise an error for bad responses
+            # Sanitize the content for safe rendering
+            content = Markup(response.text)  # Use Markup to avoid escaping HTML content
+        except requests.exceptions.HTTPError as http_err:
+            error = f"HTTP error occurred: {http_err}"
+        except requests.exceptions.ConnectionError as conn_err:
+            error = f"Connection error occurred: {conn_err}"
+        except requests.exceptions.Timeout as timeout_err:
+            error = f"Timeout error occurred: {timeout_err}"
+        except requests.exceptions.RequestException as req_err:
+            error = f"An error occurred: {req_err}"
+        except Exception as e:
+            error = f"An unexpected error occurred: {e}"
+
+    return render_template_string(HTML_TEMPLATE, content=content, error=error)
+
+if __name__ == '__main__':
+    app.run(debug=True)
