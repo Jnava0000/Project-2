@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Classroom Clone with Grading System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Google Classroom Clone</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Classes</a></li>
+                <li><a href="#">Assignments</a></li>
+                <li><a href="#">Grades</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Class List Section -->
+        <section id="class-list">
+            <h2>Your Classes</h2>
+            <ul>
+                <li>Math 101</li>
+                <li>Science 201</li>
+                <li>History 301</li>
+                <li>English 401</li>
+            </ul>
+            <input type="text" id="class-name" placeholder="New Class Name">
+            <button id="add-class-btn">Add Class</button>
+        </section>
+
+        <!-- Assignments Section -->
+        <section id="assignments">
+            <h2>Assignments</h2>
+            <ul id="assignment-list">
+                <li>Math Homework 1</li>
+                <li>Science Project</li>
+                <li>History Essay</li>
+            </ul>
+            <input type="text" id="assignment-name" placeholder="New Assignment Name">
+            <button id="add-assignment-btn">Add Assignment</button>
+        </section>
+
+        <!-- Grading System Section -->
+        <section id="grading-system">
+            <h2>Grading System</h2>
+            <div>
+                <input type="text" id="student-name" placeholder="Student Name">
+                <input type="number" id="grade-input" placeholder="Grade">
+                <button id="add-grade-btn">Add Grade</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="grades-table">
+                    <!-- Grades will be dynamically added here -->
+                </tbody>
+            </table>
+            <h4>Class Average: <span id="class-average">0</span></h4>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Google Classroom Clone</p>
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
