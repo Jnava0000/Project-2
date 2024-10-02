@@ -1,28 +1,20 @@
-import getpass
-
-# Mock database of usernames and passwords
-USER_DATABASE = {
-    'user1': 'password123',
-    'admin': 'adminpass'
-}
-
-def login():
+def scan_for_grades():
     """
-    Prompt the user for login credentials and validate them against the USER_DATABASE.
+    This function simulates scanning for grades on the local system. 
+    In a real-world scenario, this could involve accessing files, databases, or APIs.
 
     Returns:
-    bool: True if login is successful, False otherwise.
+    list: A list of grades represented as strings.
     """
-    print("Please login to continue.")
-    username = input("Username: ")
-    password = getpass.getpass("Password: ")
-
-    if USER_DATABASE.get(username) == password:
-        print(f"Welcome, {username}!")
-        return True
-    else:
-        print("Invalid username or password. Please try again.")
-        return False
+    # Placeholder for grade retrieval logic
+    # Replace this with actual scanning logic or API calls
+    print("Scanning for grades on the system...")
+    
+    # Example grades to simulate a scanned list
+    scanned_grades = ['A', 'B', 'C', 'D', 'F']
+    print(f"Grades found: {scanned_grades}")
+    
+    return scanned_grades
 
 def update_grades(grades):
     """
@@ -53,26 +45,16 @@ def update_grades(grades):
         print(f"An unexpected error occurred: {e}")
 
 def main():
-    # Prompt the user for login
-    if login():
-        # If login is successful, ask for the grades to update
-        print("Login successful. Please enter your grades to update.")
-        
-        # Taking input of grades as comma-separated values
-        grades_input = input("Enter your grades (e.g., A, B, C, D, F): ")
-        
-        # Convert the input string to a list
-        grades = [grade.strip().upper() for grade in grades_input.split(',')]
-        
-        # Call the update_grades function
-        updated_grades = update_grades(grades)
-        
-        if updated_grades:
-            print("Updated Grades:", updated_grades)
-        else:
-            print("No valid grades to update.")
+    # Simulate scanning for grades
+    grades = scan_for_grades()
+    
+    # Call the update_grades function to modify grades as required
+    updated_grades = update_grades(grades)
+    
+    if updated_grades:
+        print("Updated Grades:", updated_grades)
     else:
-        print("Login failed. Exiting program.")
+        print("No valid grades to update.")
 
 if __name__ == "__main__":
     main()
