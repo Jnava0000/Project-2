@@ -1,0 +1,45 @@
+# Notification Remover for School Organization Monitoring Software
+
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+def setup_driver():
+    """Sets up and returns the Chrome WebDriver with desired options."""
+    options = webdriver.ChromeOptions()
+    options.add_argument("--start-maximized")
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+def remove_notifications(driver, url):
+    """
+    Navigates to the monitoring software URL and removes notifications.
+
+    Args:
+        driver (webdriver): The Chrome WebDriver instance.
+        url (str): The URL of the monitoring software.
+    """
+    driver.get(url)
+    time.sleep(5)  # Wait for the page to load
+
+    try:
+        # Locate the notification element and remove it
+        notification = driver.find_element(By.XPATH, "XPATH_OF_NOTIFICATION")  # Replace with the actual XPath
+        notification.click()  # Click to dismiss the notification
+        print("Notification removed successfully.")
+    except Exception as e:
+        print(f"Error removing notification: {e}")
+
+if __name__ == "__main__":
+    # Get the URL of the monitoring software from user input
+    url = input("Enter the URL of the monitoring software: ").strip()
+    
+    # Initialize the Chrome driver
+    driver = setup_driver()
+
+    # Call the function to remove notifications
+    remove_notifications(driver, url)
+
+    # Close the driver
+    driver.quit()
