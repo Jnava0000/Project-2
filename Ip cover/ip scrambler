@@ -1,0 +1,19 @@
+import random
+
+def scramble_ip(ip_address):
+    # Split the IP address into its parts
+    parts = ip_address.split('.')
+    
+    # Check if the IP address has four parts
+    if len(parts) != 4:
+        raise ValueError("Invalid IP address format. Must be in 'x.x.x.x' format.")
+    
+    # Shuffle the parts and return the scrambled IP
+    random.shuffle(parts)
+    return '.'.join(parts)
+
+# Example usage
+ip = "192.168.1.1"
+scrambled_ip = scramble_ip(ip)
+print(f"Original IP: {ip}")
+print(f"Scrambled IP: {scrambled_ip}")
