@@ -1,4 +1,4 @@
-# 🕵️ GoGuardian Bypass
+# 🕵️ GoGuardian Bypass: made by NCCoder1 and AvidTroll
 
 The GoGuardian Bypass is a simple script that allows you to bypass the GoGuardian filter on your school or organization's network using iframes. 
 To join our Discord server, click here.
