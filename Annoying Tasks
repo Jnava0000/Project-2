@@ -1,0 +1,27 @@
+import os
+import subprocess
+
+def close_useless_tasks():
+    # List of tasks to close (replace with actual process names you want to terminate)
+    useless_tasks = ["chrome", "code", "slack"]  # Replace with the names of processes you want to close
+
+    for task in useless_tasks:
+        try:
+            # Attempt to terminate the process using pkill
+            result = subprocess.run(["pkill", "-f", task], capture_output=True, text=True)
+            
+            # Check if pkill was successful
+            if result.returncode == 0:
+                print(f"Successfully closed {task}")
+            else:
+                # If pkill fails, it may be because the process wasn't running
+                if "no process found" in result.stderr.lower():
+                    print(f"No process found for {task}. It might not be running.")
+                else:
+                    print(f"Failed to close {task}: {result.stderr}")
+        
+        except Exception as e:
+            print(f"Error closing {task}: {e}")
+
+if __name__ == "__main__":
+    close_useless_tasks()
