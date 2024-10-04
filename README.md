@@ -31,7 +31,7 @@
 ## Additional features may be added as the project evolves. An easy hide option is also being developed to enhance discretion.
 
     INSTRUCTIONS:
-    Click on ¨Code¨ on the homepage and then click ¨code space¨
+    Click on "Code" on the homepage and then click "code space"
     and then run what ever one u want c:
 
 ## Important Note:
