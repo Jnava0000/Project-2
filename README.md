@@ -27,6 +27,8 @@
     Unmonitored Social Media Access: Providing a secure environment for unmonitored social media use.
 
     Dark Web Accessibility: Facilitating easy access to the dark web for legitimate research and security testing purposes.
+    
+    and more.....
 
 ## Additional features may be added as the project evolves. An easy hide option is also being developed to enhance discretion.
 
