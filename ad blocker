@@ -1,0 +1,50 @@
+# Ad Blocker Program
+
+import requests
+from bs4 import BeautifulSoup
+
+def fetch_page(url):
+    """Fetch the content of a web page."""
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raises an HTTPError for bad responses
+        return response.text
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to fetch page: {e}")
+        return None
+
+def block_ads(html_content):
+    """Remove ads from HTML content."""
+    if html_content is None:
+        return "No content to process."
+
+    soup = BeautifulSoup(html_content, 'html.parser')
+    # Remove common ad elements by class and tag
+    for ad in soup.find_all(class_='ad'):
+        ad.decompose()
+    for ad in soup.find_all(class_='advertisement'):
+        ad.decompose()
+    for ad in soup.find_all(class_='adsbygoogle'):
+        ad.decompose()
+    for ad in soup.find_all(class_='sponsored'):
+        ad.decompose()
+    return str(soup)
+
+def main():
+    """Main function to get URL and block ads."""
+    url = input("Enter the URL of the page you want to block ads on: ")
+    if not url.startswith('http'):
+        url = 'http://' + url  # Prepend 'http://' if not provided
+
+    html_content = fetch_page(url)
+    clean_content = block_ads(html_content)
+
+    # Save the cleaned content to a file or display it
+    output_file = "cleaned_page.html"
+    with open(output_file, "w", encoding='utf-8') as file:
+        file.write(clean_content)
+
+    print(f"Ads have been removed and the cleaned page is saved to {output_file}")
+
+if __name__ == "__main__":
+    main()
