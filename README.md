@@ -1,4 +1,4 @@
-## We are currently developing a sophisticated client designed to offer a wide range of advanced features, including but not limited to:
+## 🙌We are currently developing a sophisticated client designed to offer a wide range of advanced features, including but not limited to:
 
     Unlocking Restrictions: Bypassing locked settings and accessing restricted content.
 
@@ -30,13 +30,13 @@
     
     and more.....
 
-## Additional features may be added as the project evolves. An easy hide option is also being developed to enhance discretion.
+## 👉Additional features may be added as the project evolves. An easy hide option is also being developed to enhance discretion.
 
     INSTRUCTIONS:
     Click on "Code" on the homepage and then click "code space"
     and then run what ever one u want c:
 
-## Important Note:
+## 🛑Important Note🛑:
 This client is currently under active development, and we do not have a definitive timeline for completion at this time. We appreciate your patience and understanding as we work diligently to ensure a high-quality and reliable end product.
 
 ## Disclaimer:
