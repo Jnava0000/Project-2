@@ -17,6 +17,7 @@ Our new client is a powerful tool designed to provide you with advanced capabili
     📱 Unmonitored Social Media Access
     🌑 Dark Web Accessibility
     🔧 More features are being developed and will be added over time!
+## 🚩Some things are only available on certain OS's we will try to fix that later
 
 ## 🌟 New Additions:
 🕹️ Games: Access a wide range of games for entertainment.
