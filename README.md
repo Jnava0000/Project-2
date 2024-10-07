@@ -39,7 +39,7 @@
 ## 🛑Important Note🛑:
 This client is currently under active development, and we do not have a definitive timeline for completion at this time. We appreciate your patience and understanding as we work diligently to ensure a high-quality and reliable end product.
 
-## Disclaimer:
+## 🆘Disclaimer🆘:
 The use of this software may carry significant risks, including the possibility of long-term suspension, termination of employment, or other disciplinary actions if used improperly or in violation of relevant policies and regulations. Please use responsibly and at your own risk.
 
 
