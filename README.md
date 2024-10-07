@@ -1,45 +1,39 @@
-## 🙌We are currently developing a sophisticated client designed to offer a wide range of advanced features, including but not limited to:
+## 🎮 Welcome to Project 2 Hack Client 🎉
+Our new client is a powerful tool designed to provide you with advanced capabilities and freedom over your digital interactions! Here's what we offer:
 
-    Unlocking Restrictions: Bypassing locked settings and accessing restricted content.
+    🚀 Key Features:
+    🔓 Unlocking Restrictions
+    🏫 Academic Modifications (grades and maptesting)
+    🛠️ Developer Mode Integration
+    🔁 Reverse Access
+    🌐 VPN Capabilities
+    🕵️‍♂️ Private Browsing Mode
+    💻 Simulated Windows Environment
+    🔧 Extension Management
+    🚫 JavaScript Unblocking
+    🤖 Automated Assistance
+    ☁️ Cloud-Based Windows Environment
+    🎬 Unrestricted Media Access
+    📱 Unmonitored Social Media Access
+    🌑 Dark Web Accessibility
+    🔧 More features are being developed and will be added over time!
 
-    Modifying Academic Records: Tools for adjusting grades and other academic-related modifications.
+## 🌟 New Additions:
+🕹️ Games: Access a wide range of games for entertainment.
+🔧 iOS Jailbreaks: Tools for jailbreaking iOS devices safely and effectively.
+🚿 Power Washing: Manage and schedule power washing tasks.
+👉 Stay tuned for even more updates as we evolve this project!
 
-    Developer Mode Integration: Enabling developer mode for enhanced control and functionality.
+## 🔰 How to Use:
+Navigate to "Code" on the homepage.
+Click on "Code Space".
+Choose and run the tool of your choice 🎉.
+It's as simple as that! 😎
 
-    Reverse Access: Achieving reverse access for more comprehensive control over connected devices.
-   
-    VPN Capabilities: Built-in VPN for secure and private browsing.
-
-    Private Browsing Mode: Enabling stealth browsing to ensure anonymity.
-
-    Simulated Windows Environment: Creation of fake windows for misdirection and security.
-
-    Extension Management: Enabling or disabling browser extensions as needed.
-
-    JavaScript Unblocking: Tools for overriding script restrictions.
-
-    Automated Assistance: Incorporating advanced automated functionalities (e.g., AI-driven operations).
-
-    Cloud-Based Windows Environment: Full cloud-based Windows environment for gaming and other resource-intensive activities.
-
-    Unrestricted Media Access: Availability of streaming services applications like Netflix, Hulu, and Disney+.apk.
-
-    Unmonitored Social Media Access: Providing a secure environment for unmonitored social media use.
-
-    Dark Web Accessibility: Facilitating easy access to the dark web for legitimate research and security testing purposes.
-    
-    and more.....
-
-## 👉Additional features may be added as the project evolves. An easy hide option is also being developed to enhance discretion.
-
-    INSTRUCTIONS:
-    Click on "Code" on the homepage and then click "code space"
-    and then run what ever one u want c:
-
-## 🛑Important Note🛑:
+## 🔴 Important Note 🔴
 This client is currently under active development, and we do not have a definitive timeline for completion at this time. We appreciate your patience and understanding as we work diligently to ensure a high-quality and reliable end product.
 
-## 🆘Disclaimer🆘:
-The use of this software may carry significant risks, including the possibility of long-term suspension, termination of employment, or other disciplinary actions if used improperly or in violation of relevant policies and regulations. Please use responsibly and at your own risk.
+## 🆘 Disclaimer 🆘
+The use of this software may carry significant risks, including the possibility of long-term suspension, termination of employment, or other disciplinary actions if used improperly or in violation of relevant policies and regulations. Please use responsibly and at your own risk. 🚨
 
 
