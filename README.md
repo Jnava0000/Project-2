@@ -1,4 +1,4 @@
-## 🎮 Welcome to Project 2 Hack Client 🎉
+## 🎮 Welcome to Project 2 Hack Client (ACTIVE DEVOLOPMENT) 🎉
 Our new client is a powerful tool designed to provide you with advanced capabilities and freedom over your digital interactions! Here's what we offer:
 
     🚀 Key Features:
