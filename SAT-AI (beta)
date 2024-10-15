@@ -1,0 +1,38 @@
+class TestAI:
+    def __init__(self):
+        self.knowledge_base = {
+            "math": {
+                "What is the quadratic formula?": "x = (-b ± √(b² - 4ac)) / 2a",
+                "What is the Pythagorean theorem?": "a² + b² = c²",
+                "What is 10% of 470?": "The answer is 47.",
+                "The total cost, in dollars, to rent a surfboard consists of a $25 service fee and a $10 per hour rental fee. A person rents a surfboard for t hours and intends to spend a maximum of $75 to rent the surfboard. Which inequality represents this situation?":
+                    "The inequality is 25 + 10t ≤ 75.",
+                "How many cells per milliliter will there be 15 hours after the initial observation if the number of cells doubles every 3 hours starting at 300,000?":
+                    "The answer is 9,600,000 cells per milliliter.",
+            },
+            "reading": {
+                "What does 'inference' mean in reading comprehension?": "Inference is the process of drawing a conclusion based on evidence and reasoning in the text.",
+                "Former astronaut Ellen Ochoa says that although she doesn’t have a definite idea of when it might happen, she _______ that humans will someday need to be able to live in other environments than those found on Earth.": 
+                    "The answer is 'speculates'.",
+                "Given that the conditions in binary star systems should make planetary formation nearly impossible, it’s not surprising that the existence of planets in such systems has lacked _______ explanation.": 
+                    "The answer is 'a straightforward'.",
+                "In 1937, Chinese American screen actor Anna May Wong finally got a starring role in Daughter of Shanghai, a film that _______ 'expanded the range of possibilities for Asian images on screen.'": 
+                    "The answer is 'critic Stina Chyn claims'.",
+            }
+        }
+
+    def get_answer(self, subject, question):
+        if subject in self.knowledge_base and question in self.knowledge_base[subject]:
+            return self.knowledge_base[subject][question]
+        else:
+            return "I'm sorry, I don't have an answer for that question."
+
+# Example usage
+test_ai = TestAI()
+
+# Math Examples
+print(test_ai.get_answer('math', 'What is the quadratic formula?'))
+print(test_ai.get_answer('math', 'What is 10% of 470?'))
+
+# Reading Examples
+print(test_ai.get_answer('reading', 'Former astronaut Ellen Ochoa says that although she doesn’t have a definite idea of when it might happen, she _______ that humans will someday need to live in other environments than those found on Earth.'))
