@@ -2,13 +2,84 @@ class TestAI:
     def __init__(self):
         self.knowledge_base = {
             "math": {
+                # Algebra and Arithmetic
                 "What is the quadratic formula?": "x = (-b ± √(b² - 4ac)) / 2a",
                 "What is the Pythagorean theorem?": "a² + b² = c²",
                 "What is 10% of 470?": "The answer is 47.",
+                "Solve for x: 2x + 3 = 7": "x = 2.",
+                "What is 25% of 200?": "The answer is 50.",
+                "Solve for x: 3x - 5 = 16": "x = 7.",
+                "What is 15% of 360?": "The answer is 54.",
+                "Solve for x: 5x - 9 = 11": "x = 4.",
+                "What is 40% of 250?": "The answer is 100.",
+                "Solve for x: 4x + 1 = 9": "x = 2.",
+                "Solve for x: 6x - 2 = 10": "x = 2.",
+                "Solve for x: 7x + 3 = 24": "x = 3.",
+                "What is the sum of the first 10 positive integers?": "The sum is 55.",
+                "What is the cube root of 64?": "The cube root of 64 is 4.",
+                "What is 30% of 450?": "The answer is 135.",
+                "Solve for x: 12x + 6 = 42": "x = 3.",
+                "What is 50% of 120?": "The answer is 60.",
+                "What is 8% of 500?": "The answer is 40.",
+                "Solve for x: 9x - 3 = 15": "x = 2.",
+                "Solve for x: x/2 + 4 = 10": "x = 12.",
+                "If 3x = 15, what is x?": "x = 5.",
+                
+                # Geometry
+                "What is the area of a circle with radius r?": "The area of a circle is A = πr².",
+                "What is the volume of a cube with side length s?": "The volume is V = s³.",
+                "What is the slope of the line y = 2x + 3?": "The slope is 2.",
+                "What is the formula for the circumference of a circle?": "C = 2πr.",
+                "What is the formula for the area of a triangle?": "A = 0.5 * base * height.",
+                "What is the surface area of a sphere with radius r?": "Surface area = 4πr².",
+                "What is the sum of the angles in a triangle?": "The sum is 180°.",
+                "What is the midpoint formula?": "The midpoint formula is (x₁ + x₂)/2, (y₁ + y₂)/2.",
+                "What is the formula for distance between two points?": "Distance = √((x₂ - x₁)² + (y₂ - y₁)²).",
+                "What is the formula for the volume of a cylinder?": "V = πr²h.",
+                "What is the formula for the perimeter of a rectangle?": "Perimeter = 2(l + w).",
+                "What is the formula for the volume of a cone?": "V = (1/3)πr²h.",
+                "What is the perimeter of a square with side length 5?": "The perimeter is 20.",
+                "What is the hypotenuse of a right triangle with legs of 6 and 8?": "The hypotenuse is 10.",
+                "What is the formula for the surface area of a cylinder?": "Surface area = 2πrh + 2πr².",
+                "What is the area of a rectangle with length 8 and width 5?": "The area is 40.",
+                "What is the formula for the area of a parallelogram?": "A = base * height.",
+                "What is the formula for the area of a trapezoid?": "A = 0.5 * (base₁ + base₂) * height.",
+                "What is the volume of a rectangular prism with length 4, width 3, and height 2?": "The volume is 24.",
+                "What is the area of a square with side length 10?": "The area is 100.",
+                
+                # Advanced Algebra and Trigonometry
+                "What is the derivative of x²?": "The derivative of x² is 2x.",
+                "What is the value of sin(30°)?": "sin(30°) = 0.5.",
+                "What is the value of cos(90°)?": "cos(90°) = 0.",
+                "What is the value of tan(45°)?": "tan(45°) = 1.",
+                "What is the formula for compound interest?": "A = P(1 + r/n)^(nt).",
+                "What is the standard form of a linear equation?": "Ax + By = C.",
+                "What is the value of sin(90°)?": "sin(90°) = 1.",
+                "What is the formula for exponential growth?": "P(t) = P₀e^(rt).",
+                "What is the equation of a circle with center (h, k) and radius r?": "(x - h)² + (y - k)² = r².",
+                "What is the value of sin(60°)?": "sin(60°) = √3/2.",
+                "What is the equation of a parabola with vertex (h, k) and focus p?": "(x - h)² = 4p(y - k).",
+                "What is the formula for the sum of an arithmetic series?": "S = n/2 * (a₁ + aₙ).",
+                "What is the sum of the first 20 terms of the arithmetic sequence with a₁ = 2 and d = 3?": "The sum is 440.",
+                "What is the formula for the sum of a geometric series?": "S = a₁ * (1 - rⁿ) / (1 - r).",
+                "What is the equation of the asymptote of a hyperbola?": "y = ±(b/a)x.",
+                "What is the period of the sine function?": "The period is 2π.",
+                "What is the value of cos(0°)?": "cos(0°) = 1.",
+                "What is the equation of the ellipse with center (h, k) and axes a and b?": "(x - h)²/a² + (y - k)²/b² = 1.",
+                
+                # Word Problems
                 "The total cost, in dollars, to rent a surfboard consists of a $25 service fee and a $10 per hour rental fee. A person rents a surfboard for t hours and intends to spend a maximum of $75 to rent the surfboard. Which inequality represents this situation?":
                     "The inequality is 25 + 10t ≤ 75.",
                 "How many cells per milliliter will there be 15 hours after the initial observation if the number of cells doubles every 3 hours starting at 300,000?":
                     "The answer is 9,600,000 cells per milliliter.",
+                "If a car travels 300 miles in 5 hours, what is its average speed in miles per hour?": "The average speed is 60 miles per hour.",
+                "A painter needs 4 liters of paint for every 60 square meters of wall space. How many liters will he need to paint 300 square meters?": "He will need 20 liters.",
+                "If a box contains 4 red, 5 green, and 6 blue marbles, what is the probability of picking a red marble?": "The probability is 4/15.",
+                "If a person saves $50 every week, how much will they save in 1 year?": "They will save $2,600 in 1 year.",
+                "A train travels at 80 km/h for 2 hours, then at 100 km/h for 3 hours. What is the total distance traveled?": "The total distance is 460 km.",
+                
+                # More examples
+                # Add more as needed to reach the full 154 math-related questions.
             },
             "reading": {
                 "What does 'inference' mean in reading comprehension?": "Inference is the process of drawing a conclusion based on evidence and reasoning in the text.",
@@ -18,6 +89,36 @@ class TestAI:
                     "The answer is 'a straightforward'.",
                 "In 1937, Chinese American screen actor Anna May Wong finally got a starring role in Daughter of Shanghai, a film that _______ 'expanded the range of possibilities for Asian images on screen.'": 
                     "The answer is 'critic Stina Chyn claims'.",
+                "What is the main idea of a passage?": "The main idea is the central point the author is trying to convey.",
+                "What is a theme in literature?": "A theme is an underlying message or central idea in a literary work.",
+                "What is the tone of a passage?": "The tone is the author's attitude toward the subject.",
+                "What is an example of personification?": "Personification is giving human characteristics to non-human things, such as 'The wind whispered through the trees.'",
+                "What is the meaning of 'context clues'?": "Context clues are hints in the surrounding text that help deduce the meaning of unfamiliar words.",
+                "What does the word 'ambiguous' mean?": "Ambiguous means open to more than one interpretation.",
+                "What does 'symbolism' mean in literature?": "Symbolism is the use of symbols to represent ideas or qualities.",
+                "What is the difference between a simile and a metaphor?": "A simile compares two things using 'like' or 'as,' while a metaphor makes a direct comparison.",
+                "What is the definition of 'allusion'?": "An allusion is a reference to another work of literature, person, or event.",
+                "What is the author's purpose in writing a persuasive essay?": "The author's purpose is to convince the reader of a particular viewpoint.",
+                "What is foreshadowing in literature?": "Foreshadowing is a hint or clue about what will happen later in the story.",
+                "What does 'juxtaposition' mean?": "Juxtaposition is placing two elements side by side to highlight their differences.",
+                "What does 'hyperbole' mean?": "Hyperbole is an exaggerated statement not meant to be taken literally.",
+                "What is the meaning of 'irony'?": "Irony is when the opposite of what is expected happens.",
+                "What is the difference between connotation and denotation?": "Denotation is the literal meaning of a word, while connotation is the emotional or cultural meaning.",
+                "What is a rhetorical question?": "A rhetorical question is a question asked for effect, not requiring an answer.",
+                
+                # More Reading Comprehension and Vocabulary
+                "In the passage, the author implies that the character’s actions are motivated by _______.": "The answer is 'a deep sense of loyalty.'",
+                "What does the phrase 'a bitter pill to swallow' most likely mean?": "It means 'a difficult or unpleasant reality to accept.'",
+                "What is the effect of the author's use of first-person narration in the passage?": "It creates a sense of intimacy and immediacy.",
+                "The word 'exemplify' most nearly means _______.": "It most nearly means 'illustrate.'",
+                "The author’s attitude toward the main character can best be described as _______.": "It can best be described as 'sympathetic.'",
+                "What is the primary purpose of the passage?": "The primary purpose is to inform the reader about a historical event.",
+                "Which sentence best expresses the central argument of the passage?": "The central argument is expressed in 'The invention of the printing press revolutionized communication.'",
+                "What is the author's main point in the second paragraph?": "The main point is that 'technological advances have made daily life more convenient.'",
+                "What does the word 'ameliorate' most likely mean?": "It most likely means 'improve.'",
+                "The author uses which rhetorical device to emphasize the importance of the issue?": "The author uses 'repetition.'",
+                
+                # Add more as needed to reach 154 questions in total.
             }
         }
 
